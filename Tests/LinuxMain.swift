@@ -1,7 +1,7 @@
 import XCTest
 
-import ipdataTests
+import IPDataTests
 
 var tests = [XCTestCaseEntry]()
-tests += ipdataTests.allTests()
+tests += IPDataTests.allTests()
 XCTMain(tests)
