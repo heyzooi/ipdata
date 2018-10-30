@@ -10,7 +10,7 @@ task:
     image: swift
   test_script: swift test
 
-task: Publish
+publish_task:
   depends_on:
     - macOS
     - Linux
