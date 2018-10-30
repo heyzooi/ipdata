@@ -9,3 +9,12 @@ task:
   container:
     image: swift
   test_script: swift test
+
+task: Publish
+  depends_on:
+    - macOS
+    - Linux
+  only_if: $CIRRUS_BRANCH == 'master'
+  osx_instance:
+    image: high-sierra-xcode-10.0
+  pod_version_script: pod --version
