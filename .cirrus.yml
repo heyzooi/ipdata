@@ -1,0 +1,11 @@
+task:
+  name: macOS
+  osx_instance:
+    image: high-sierra-xcode-10.0
+  test_script: swift test
+
+task:
+  name: Linux
+  container:
+    image: swift
+  test_script: swift test
