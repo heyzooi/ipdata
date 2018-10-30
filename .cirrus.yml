@@ -10,11 +10,17 @@ task:
     image: swift
   test_script: swift test
 
-publish_task:
+task:
+  name: CocoaPods Deploy
   depends_on:
     - macOS
     - Linux
   only_if: $CIRRUS_BRANCH == 'master'
   osx_instance:
     image: high-sierra-xcode-10.0
+  environment:
+    COCOAPODS_PASSWORD: ENCRYPTED[5926b7e6b240a4d63d81d3c22f87e2b3304462b13da572fde3a6f036d95e13520429980698718dd5fe48903efb05d53d]
   pod_version_script: pod --version
+  netrc_line1_script: echo "machine trunk.cocoapods.org" >> ~/.netrc
+  netrc_line2_script: echo "  login hey.zooi@gmail.com" >> ~/.netrc
+  netrc_line3_script: echo "  password $COCOAPODS_PASSWORD" >> ~/.netrc
