@@ -15,7 +15,7 @@ task:
   depends_on:
     - macOS
     - Linux
-  only_if: $CIRRUS_BRANCH == 'master'
+  only_if: $CIRRUS_TAG =~ '\d+\.\d+\.\d+'
   osx_instance:
     image: high-sierra-xcode-10.0
   environment:
@@ -24,4 +24,5 @@ task:
   netrc_line1_script: echo "machine trunk.cocoapods.org" >> ~/.netrc
   netrc_line2_script: echo "  login hey.zooi@gmail.com" >> ~/.netrc
   netrc_line3_script: echo "  password $COCOAPODS_PASSWORD" >> ~/.netrc
+  chmod_netrc_script: chmod 600 ~/.netrc
   pod_trunk_push_script: pod trunk push
